@@ -41,7 +41,8 @@ function App() {
         className={`bg-gray-950 border-r border-gray-800 flex-shrink-0 transition-all duration-300 flex flex-col ${isSidebarOpen ? "w-72" : "w-0 -ml-0"
           } ${!isSidebarOpen && "hidden"}`} // hide completely when closed to prevent layout shifts if needed, but transition is nice
       >
-        <div className="p-6 border-b border-gray-800">
+        <div className="p-6 border-b border-gray-800 flex items-center gap-3">
+          <img src="/logo.png" alt="Spikad Logo" className="w-10 h-10 object-contain" />
           <h1 className="text-xl font-bold tracking-tight text-white">Spikad <span className="text-gray-500 text-sm font-normal block mt-1">Operating System</span></h1>
         </div>
 
@@ -51,8 +52,8 @@ function App() {
               key={doc.id}
               onClick={() => setActiveDocId(doc.id)}
               className={`w-full text-left px-3 py-2.5 rounded-md text-sm font-medium transition-colors ${activeDocId === doc.id
-                  ? "bg-blue-600/10 text-blue-400 border border-blue-600/20"
-                  : "text-gray-400 hover:bg-gray-800 hover:text-gray-200"
+                ? "bg-blue-600/10 text-blue-400 border border-blue-600/20"
+                : "text-gray-400 hover:bg-gray-800 hover:text-gray-200"
                 }`}
             >
               {doc.title}
