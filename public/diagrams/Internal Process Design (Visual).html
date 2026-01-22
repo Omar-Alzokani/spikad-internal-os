@@ -1,0 +1,466 @@
+<!-- Spikad Factory Stages – Internal Process Design (Visual) -->
+<div class="spikad-factory" aria-label="Spikad Factory Stage Processes">
+  <style>
+    /* Scoped styles (won't affect the rest of your website) */
+    .spikad-factory{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --panel2:#0f0f16;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.78);
+      --soft:rgba(255,255,255,.10);
+      --soft2:rgba(255,255,255,.06);
+      --accent:#7a5cff;
+      --accent2:#2ee6a6;
+      --danger:#ff5c7a;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,var(--bg),#07070b);
+      color:var(--text);
+      padding:28px;
+      border-radius:16px;
+      border:1px solid var(--soft);
+      max-width:1200px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+    .spikad-factory *{ box-sizing:border-box; }
+
+    /* Header */
+    .fac-header{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:16px;
+    }
+    .fac-title{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-0.02em;
+      line-height:1.2;
+    }
+    .fac-sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      max-width:900px;
+      line-height:1.45;
+    }
+
+    /* Progress line */
+    .progress{
+      position:relative;
+      padding:16px 14px 12px;
+      margin:18px 0 18px;
+      border-radius:16px;
+      border:1px solid var(--soft2);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      overflow:hidden;
+    }
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      position:relative;
+    }
+    @media (max-width: 1050px){
+      .steps{ grid-template-columns:1fr; }
+    }
+    @media (min-width: 1051px){
+      .steps::before{
+        content:"";
+        position:absolute;
+        left:18px; right:18px;
+        top:34px;
+        height:3px;
+        border-radius:999px;
+        background:linear-gradient(90deg, var(--accent), var(--accent2));
+        opacity:.55;
+      }
+    }
+    .stephead{
+      padding:10px 10px;
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .dot{
+      width:12px; height:12px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(122,92,255,.15);
+      margin-bottom:10px;
+    }
+    .stephead:nth-child(2) .dot,
+    .stephead:nth-child(3) .dot{
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+    .stephead:nth-child(4) .dot{
+      background:var(--accent2);
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+    .stephead .label{
+      margin:0 0 2px;
+      font-size:13px;
+      font-weight:850;
+      letter-spacing:-0.01em;
+    }
+    .stephead .desc{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    /* Stage cards grid */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:10px;
+    }
+    @media (max-width: 1000px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      border-radius:16px;
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--soft);
+      padding:18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:100%;
+    }
+
+    .card-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .card h3{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-0.02em;
+    }
+    .badge{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.85);
+      white-space:nowrap;
+    }
+    .purpose{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    /* Info boxes */
+    .box{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+    .k{
+      margin:0 0 8px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      color:rgba(255,255,255,.62);
+    }
+    .box ul{
+      margin:0;
+      padding-left:16px;
+      color:rgba(255,255,255,.82);
+      font-size:12.5px;
+      line-height:1.5;
+    }
+    .box li{ margin:6px 0; }
+
+    /* Explicit NOT */
+    .not{
+      border:1px solid rgba(255,92,122,.22);
+      background:rgba(255,92,122,.06);
+    }
+
+    /* Exit criteria highlight */
+    .exit{
+      border-radius:14px;
+      border:1px solid rgba(122,92,255,.30);
+      background:linear-gradient(90deg,rgba(122,92,255,.18),rgba(46,230,166,.12));
+      padding:12px 12px;
+      font-size:12.8px;
+      line-height:1.45;
+      font-weight:800;
+      color:#fff;
+    }
+
+    /* Stone rules */
+    .rules{
+      margin-top:14px;
+      padding:14px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+    .rules h4{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:-0.01em;
+    }
+    .rules-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 900px){
+      .rules-grid{ grid-template-columns:1fr; }
+    }
+
+    .rbox{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      padding:12px 12px;
+    }
+    .rbox h5{
+      margin:0 0 8px;
+      font-size:13px;
+      letter-spacing:-0.01em;
+    }
+    .rbox ul{
+      margin:0;
+      padding-left:16px;
+      font-size:12.5px;
+      line-height:1.5;
+      color:rgba(255,255,255,.82);
+    }
+    .rbox li{ margin:6px 0; }
+  </style>
+
+  <div class="fac-header">
+    <h2 class="fac-title">Factory Stages – Internal Process (How Work Moves)</h2>
+    <p class="fac-sub">
+      Same flow for all clients: <b>Intake → Formation → Build → Handover</b>.
+      The purchased package only changes which modules activate in <b>Build</b>.
+      There is <b>one client handover only</b>: at the end.
+    </p>
+  </div>
+
+  <!-- Progress line header -->
+  <div class="progress" role="group" aria-label="Production stages overview">
+    <div class="steps">
+      <div class="stephead">
+        <div class="dot" aria-hidden="true"></div>
+        <p class="label">1) Intake & Build Map</p>
+        <p class="desc">Decide what gets built. Freeze scope.</p>
+      </div>
+      <div class="stephead">
+        <div class="dot" aria-hidden="true"></div>
+        <p class="label">2) Formation (Foundation)</p>
+        <p class="desc">Register the company + setup accounting.</p>
+      </div>
+      <div class="stephead">
+        <div class="dot" aria-hidden="true"></div>
+        <p class="label">3) Build (Execution)</p>
+        <p class="desc">Build only active modules (override logic).</p>
+      </div>
+      <div class="stephead">
+        <div class="dot" aria-hidden="true"></div>
+        <p class="label">4) Handover (Exit)</p>
+        <p class="desc">Deliver once. Activate accounting. Close.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stage cards -->
+  <div class="grid" role="group" aria-label="Stage process cards">
+
+    <!-- Intake -->
+    <section class="card">
+      <div class="card-top">
+        <h3>1) Intake & Build Map</h3>
+        <span class="badge">Gate 0</span>
+      </div>
+      <p class="purpose"><b>Purpose:</b> Translate the purchase into a frozen Build Map. No work starts before scope is locked.</p>
+
+      <div class="box">
+        <p class="k">Inputs</p>
+        <ul>
+          <li>Purchased package (Stage 1 / 2 / 3)</li>
+          <li>Company type (EF / AB) + business model</li>
+          <li>Complexity flags (payroll, EU sales, integrations)</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <p class="k">Process (Steps)</p>
+        <ul>
+          <li>Confirm purchased stage (locked)</li>
+          <li>Collect structured answers (no free-form)</li>
+          <li>Generate Build Map: Modules <b>ON / OFF / UPGRADED</b></li>
+          <li>Internal validation (no creativity, only correctness)</li>
+        </ul>
+      </div>
+
+      <div class="box not">
+        <p class="k">Not allowed</p>
+        <ul>
+          <li>No execution / no design / no registration</li>
+          <li>No strategy calls or custom consulting</li>
+          <li>No changing modules without new order</li>
+        </ul>
+      </div>
+
+      <div class="exit">Exit Criteria: Build Map approved & frozen → move to Formation.</div>
+    </section>
+
+    <!-- Formation -->
+    <section class="card">
+      <div class="card-top">
+        <h3>2) Formation (Foundation)</h3>
+        <span class="badge">Backend Only</span>
+      </div>
+      <p class="purpose"><b>Purpose:</b> Make the company legally alive + create accounting infrastructure. Client does not receive partial outputs.</p>
+
+      <div class="box">
+        <p class="k">Inputs</p>
+        <ul>
+          <li>Approved Build Map</li>
+          <li>Client identity details + legal docs</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <p class="k">Process (Steps)</p>
+        <ul>
+          <li>Company registration (EF or AB)</li>
+          <li>Tax setup: F-skatt + VAT (if applicable)</li>
+          <li>Accounting system setup: chart of accounts + invoice templates</li>
+          <li>Internal verification: legal status + system access</li>
+        </ul>
+      </div>
+
+      <div class="box not">
+        <p class="k">Not allowed</p>
+        <ul>
+          <li>No branding, websites, marketing, content</li>
+          <li>No client delivery / no partial handover</li>
+          <li>No skipping Formation</li>
+        </ul>
+      </div>
+
+      <div class="exit">Exit Criteria: Company registered + accounting system live → move to Build.</div>
+    </section>
+
+    <!-- Build -->
+    <section class="card">
+      <div class="card-top">
+        <h3>3) Build (Execution)</h3>
+        <span class="badge">Modules Only</span>
+      </div>
+      <p class="purpose"><b>Purpose:</b> Execute only the modules required for the purchased stage. No duplication. No extras.</p>
+
+      <div class="box">
+        <p class="k">Inputs</p>
+        <ul>
+          <li>Approved Build Map (modules ON/OFF/UPGRADED)</li>
+          <li>Active company from Formation</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <p class="k">Process (Steps)</p>
+        <ul>
+          <li>Activate modules according to Build Map</li>
+          <li>Build per module (brand / web / social / legal / tech)</li>
+          <li>Internal QA: match Build Map + stage outputs</li>
+        </ul>
+      </div>
+
+      <div class="box not">
+        <p class="k">Not allowed</p>
+        <ul>
+          <li>No client previews or feedback loops</li>
+          <li>No “nice-to-have” additions</li>
+          <li>No stacking: higher stages <b>replace</b> lower versions</li>
+        </ul>
+      </div>
+
+      <div class="exit">Exit Criteria: All active modules complete + QA passed → move to Handover.</div>
+    </section>
+
+    <!-- Handover -->
+    <section class="card">
+      <div class="card-top">
+        <h3>4) Handover (Exit)</h3>
+        <span class="badge">Only Client Delivery</span>
+      </div>
+      <p class="purpose"><b>Purpose:</b> Deliver once, confirm accounting subscription, close production. Anything new becomes a new order.</p>
+
+      <div class="box">
+        <p class="k">Inputs</p>
+        <ul>
+          <li>Completed Build + QA passed</li>
+          <li>Accounting plan ready for activation</li>
+        </ul>
+      </div>
+
+      <div class="box">
+        <p class="k">Process (Steps)</p>
+        <ul>
+          <li>Final verification vs Build Map</li>
+          <li>Access transfer (web/admin/accounting)</li>
+          <li>Accounting lock-in (subscription + autopay)</li>
+          <li>Formal close (delivery confirmed, ticket closed)</li>
+        </ul>
+      </div>
+
+      <div class="box not">
+        <p class="k">Not allowed</p>
+        <ul>
+          <li>No extra work during handover</li>
+          <li>No scope changes</li>
+          <li>No promises for future tasks without new order</li>
+        </ul>
+      </div>
+
+      <div class="exit">Exit Criteria: Client access confirmed + accounting active → company exits the factory.</div>
+    </section>
+
+  </div>
+
+  <!-- Carved-in-stone rules -->
+  <div class="rules" role="note" aria-label="Carved in stone system rules">
+    <h4>Carved in Stone Rules</h4>
+    <div class="rules-grid">
+      <div class="rbox">
+        <h5>Always</h5>
+        <ul>
+          <li>Follow the Build Map. If it’s not listed, it’s not included.</li>
+          <li>One delivery per production cycle: deliver at Handover only.</li>
+          <li>Formation is backend-only and never delivered partially.</li>
+          <li>Modules override (replace). They never stack or duplicate.</li>
+        </ul>
+      </div>
+      <div class="rbox">
+        <h5>Never</h5>
+        <ul>
+          <li>No partial handovers or mid-production client reviews.</li>
+          <li>No exceptions inside production. Log exceptions; fix system later.</li>
+          <li>No custom scope sold inside packages. New needs = new order.</li>
+          <li>No improvisation during Build. Execution follows templates.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

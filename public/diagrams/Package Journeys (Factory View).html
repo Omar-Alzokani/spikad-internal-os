@@ -1,0 +1,217 @@
+<!-- Spikad Package Journeys – Horizontal Factory View -->
+<div class="spikad-journeys-h" aria-label="Spikad Package Journeys Horizontal">
+  <style>
+    .spikad-journeys-h{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --panel2:#0f0f16;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.78);
+      --soft:rgba(255,255,255,.10);
+      --accent:#7a5cff;
+      --accent2:#2ee6a6;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,var(--bg),#07070b);
+      color:var(--text);
+      padding:28px;
+      border-radius:16px;
+      border:1px solid var(--soft);
+      max-width:1200px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+    .spikad-journeys-h *{ box-sizing:border-box; }
+
+    h2{
+      margin:0 0 18px;
+      font-size:22px;
+      letter-spacing:-0.02em;
+    }
+
+    /* Grid */
+    .matrix{
+      display:grid;
+      grid-template-columns: 220px repeat(4, 1fr);
+      gap:12px;
+    }
+
+    @media(max-width:1100px){
+      .matrix{
+        grid-template-columns:1fr;
+      }
+    }
+
+    /* Headers */
+    .head{
+      padding:12px;
+      font-size:13px;
+      font-weight:800;
+      text-align:center;
+      border-radius:12px;
+      background:rgba(255,255,255,.04);
+      border:1px solid var(--soft);
+    }
+
+    .corner{
+      background:none;
+      border:none;
+    }
+
+    /* Package column */
+    .pkg{
+      padding:16px 14px;
+      border-radius:16px;
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--soft);
+    }
+
+    .pkg h3{
+      margin:0 0 6px;
+      font-size:17px;
+      letter-spacing:-0.02em;
+    }
+
+    .pkg p{
+      margin:0;
+      font-size:12.5px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    /* Cells */
+    .cell{
+      padding:14px 14px;
+      border-radius:16px;
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--soft);
+      font-size:12.5px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .cell strong{
+      display:block;
+      font-size:13px;
+      font-weight:800;
+      color:#ffffff;
+      margin-bottom:6px;
+    }
+
+    /* Output */
+    .output{
+      margin-top:10px;
+      padding:10px;
+      border-radius:12px;
+      border:1px solid rgba(122,92,255,.30);
+      background:linear-gradient(90deg,rgba(122,92,255,.18),rgba(46,230,166,.12));
+      font-size:12.5px;
+      font-weight:800;
+      color:#ffffff;
+    }
+  </style>
+
+  <h2>Package Journeys Mapped to the Production Line</h2>
+
+  <div class="matrix">
+
+    <!-- Header Row -->
+    <div class="head corner"></div>
+    <div class="head">Intake</div>
+    <div class="head">Formation</div>
+    <div class="head">Build</div>
+    <div class="head">Handover</div>
+
+    <!-- Stage 1 -->
+    <div class="pkg">
+      <h3>Stage 1 — Solo Company</h3>
+      <p>Goal: Company exists and looks professional.</p>
+    </div>
+    <div class="cell">
+      <strong>Stage Selection</strong>
+      Stage 1 confirmed<br>
+      Simple business model<br>
+      Build Map created
+    </div>
+    <div class="cell">
+      <strong>Legal Foundation</strong>
+      Company registration<br>
+      F-skatt / VAT<br>
+      Accounting system setup
+    </div>
+    <div class="cell">
+      <strong>Minimal Build</strong>
+      Basic branding<br>
+      Landing page<br>
+      No social or marketing
+    </div>
+    <div class="cell">
+      <strong>Single Delivery</strong>
+      Company live<br>
+      Website live<br>
+      Accounting activated
+      <div class="output">Output: “I can legally operate.”</div>
+    </div>
+
+    <!-- Stage 2 -->
+    <div class="pkg">
+      <h3>Stage 2 — Operating Company</h3>
+      <p>Goal: Company operates and sells.</p>
+    </div>
+    <div class="cell">
+      <strong>Stage Selection</strong>
+      Stage 2 confirmed<br>
+      Build Map overrides Stage 1
+    </div>
+    <div class="cell">
+      <strong>Same Foundation</strong>
+      Company registration<br>
+      F-skatt / VAT<br>
+      Accounting system setup
+    </div>
+    <div class="cell">
+      <strong>Upgraded Build</strong>
+      Full branding<br>
+      Full website or e-commerce<br>
+      Social pages + 15 posts<br>
+      Legal documents
+    </div>
+    <div class="cell">
+      <strong>Single Delivery</strong>
+      Operating website/store<br>
+      Social presence live<br>
+      Accounting running
+      <div class="output">Output: “I can sell and look active.”</div>
+    </div>
+
+    <!-- Stage 3 -->
+    <div class="pkg">
+      <h3>Stage 3 — Growth-Ready Company</h3>
+      <p>Goal: Company can scale without breaking.</p>
+    </div>
+    <div class="cell">
+      <strong>Stage Selection</strong>
+      Stage 3 confirmed<br>
+      Complexity flags identified
+    </div>
+    <div class="cell">
+      <strong>Same Foundation</strong>
+      Company registration<br>
+      F-skatt / VAT<br>
+      Accounting system setup
+    </div>
+    <div class="cell">
+      <strong>Advanced Build</strong>
+      Custom app / advanced e-com<br>
+      Integrations<br>
+      Marketing launch (time-boxed)
+    </div>
+    <div class="cell">
+      <strong>Single Delivery</strong>
+      Scalable system delivered<br>
+      Integrations live<br>
+      Advanced accounting active
+      <div class="output">Output: “I can grow with systems.”</div>
+    </div>
+
+  </div>
+</div>

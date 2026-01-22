@@ -1,0 +1,625 @@
+<!-- Spikad Product Architecture – Production Stages (copy/paste anywhere) -->
+<div class="spikad-arch" aria-label="Spikad Product Architecture">
+  <style>
+    /* Scoped styles (won't affect the rest of your website) */
+    .spikad-arch{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --panel2:#0f0f16;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.74);
+      --soft:rgba(255,255,255,.10);
+      --soft2:rgba(255,255,255,.06);
+      --accent:#7a5cff;
+      --accent2:#2ee6a6;
+      --danger:#ff5c7a;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg, var(--bg), #07070b);
+      padding:28px;
+      border-radius:16px;
+      border:1px solid var(--soft);
+      max-width:1150px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+    .spikad-arch *{ box-sizing:border-box; }
+
+    /* Header */
+    .arch-header{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:16px;
+    }
+    .arch-title{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-0.02em;
+      line-height:1.2;
+    }
+    .arch-sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      max-width:760px;
+      line-height:1.45;
+    }
+
+    /* Progress line */
+    .arch-progress{
+      position:relative;
+      padding:18px 12px 10px;
+      margin:18px 0 18px;
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--soft2);
+      overflow:hidden;
+    }
+    .arch-progress::before{
+      content:"";
+      position:absolute;
+      left:18px; right:18px;
+      top:34px;
+      height:3px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity:.55;
+    }
+    .arch-steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    .arch-step{
+      padding:8px 10px 6px;
+      border-radius:12px;
+      text-align:left;
+    }
+    .arch-dot{
+      width:12px; height:12px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(122,92,255,.15);
+      margin-bottom:10px;
+    }
+    .arch-step:nth-child(2) .arch-dot{
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+    .arch-step:nth-child(3) .arch-dot{
+      background:var(--accent2);
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+    .arch-step .label{
+      font-weight:800;
+      font-size:13px;
+      letter-spacing:-0.01em;
+      margin:0 0 2px;
+    }
+    .arch-step .desc{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    /* Layout */
+    .arch-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 1000px){
+      .arch-grid{ grid-template-columns:1fr; }
+      .arch-steps{ grid-template-columns:1fr; }
+      .arch-progress::before{ top:0; height:0; } /* remove line on mobile */
+    }
+
+    /* Stage card */
+    .stage{
+      border-radius:16px;
+      background:linear-gradient(180deg, var(--panel), var(--panel2));
+      border:1px solid var(--soft);
+      padding:18px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:100%;
+    }
+    .stage-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .stage h3{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-0.02em;
+    }
+    .badge{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--soft);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.85);
+      white-space:nowrap;
+    }
+    .purpose{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    /* Sections */
+    .sec-title{
+      font-size:12px;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.65);
+      margin:6px 0 6px;
+    }
+    .box{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+
+    /* Lists */
+    ul.clean{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .item{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 10px;
+      border-radius:12px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .tick{
+      width:18px; height:18px;
+      border-radius:6px;
+      background:rgba(46,230,166,.18);
+      border:1px solid rgba(46,230,166,.30);
+      flex:0 0 18px;
+      position:relative;
+      margin-top:1px;
+    }
+    .tick::after{
+      content:"";
+      position:absolute;
+      left:5px; top:3px;
+      width:6px; height:10px;
+      border-right:2px solid rgba(255,255,255,.85);
+      border-bottom:2px solid rgba(255,255,255,.85);
+      transform:rotate(40deg);
+    }
+
+    .x{
+      width:18px; height:18px;
+      border-radius:6px;
+      background:rgba(255,92,122,.16);
+      border:1px solid rgba(255,92,122,.30);
+      flex:0 0 18px;
+      position:relative;
+      margin-top:1px;
+    }
+    .x::before, .x::after{
+      content:"";
+      position:absolute;
+      left:4px; top:8px;
+      width:10px; height:2px;
+      background:rgba(255,255,255,.85);
+      border-radius:2px;
+    }
+    .x::before{ transform:rotate(45deg); }
+    .x::after{ transform:rotate(-45deg); }
+
+    .item strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:2px;
+      font-weight:800;
+    }
+    .item span{
+      display:block;
+      font-size:12.5px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    /* Outcome / Exit */
+    .outcome{
+      border-radius:14px;
+      border:1px solid rgba(122,92,255,.25);
+      background:linear-gradient(90deg, rgba(122,92,255,.12), rgba(46,230,166,.08));
+      padding:12px 12px;
+    }
+    .outcome p{
+      margin:0;
+      font-size:13px;
+      line-height:1.4;
+      color:rgba(255,255,255,.92);
+      font-weight:700;
+    }
+    .exit{
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.18);
+      background:rgba(255,255,255,.02);
+      padding:12px 12px;
+    }
+    .exit p{
+      margin:0;
+      font-size:12.5px;
+      color:rgba(255,255,255,.78);
+      line-height:1.45;
+    }
+    .exit b{ color:rgba(255,255,255,.92); }
+
+    /* Global Rules */
+    .rules{
+      margin-top:14px;
+      padding:14px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+    }
+    .rules h4{
+      margin:0 0 8px;
+      font-size:14px;
+      letter-spacing:-0.01em;
+    }
+    .rules ul{
+      margin:0;
+      padding-left:18px;
+      color:rgba(255,255,255,.82);
+      font-size:12.5px;
+      line-height:1.5;
+    }
+    .rules li{ margin:6px 0; }
+
+    .tagline{
+      margin-top:12px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(46,230,166,.18);
+      background:rgba(46,230,166,.06);
+      color:rgba(255,255,255,.86);
+      font-size:13px;
+      line-height:1.45;
+      font-weight:650;
+    }
+  </style>
+
+  <div class="arch-header">
+    <h2 class="arch-title">Product Architecture (Production Stages)</h2>
+    <p class="arch-sub">
+      This defines <b>exactly</b> what each stage guarantees — and what it does <b>not</b>. If it’s not written here, it’s not included.
+    </p>
+  </div>
+
+  <!-- Progress line -->
+  <div class="arch-progress" role="group" aria-label="Stages progress">
+    <div class="arch-steps">
+      <div class="arch-step">
+        <div class="arch-dot" aria-hidden="true"></div>
+        <p class="label">Stage 1 — Solo Company</p>
+        <p class="desc">Company exists. Ready to invoice and operate.</p>
+      </div>
+      <div class="arch-step">
+        <div class="arch-dot" aria-hidden="true"></div>
+        <p class="label">Stage 2 — Operating Company</p>
+        <p class="desc">Company operates. Ready to sell and look active.</p>
+      </div>
+      <div class="arch-step">
+        <div class="arch-dot" aria-hidden="true"></div>
+        <p class="label">Stage 3 — Growth-Ready Company</p>
+        <p class="desc">Company scales. Systems and launch in place.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="arch-grid">
+    <!-- Stage 1 -->
+    <article class="stage">
+      <div class="stage-top">
+        <h3>Stage 1 — Solo Company</h3>
+        <span class="badge">Company Birth</span>
+      </div>
+      <p class="purpose"><b>Purpose:</b> Create a legally existing, professional company that can invoice and operate.</p>
+
+      <div class="outcome">
+        <p>✅ Guaranteed Outcome: A legally registered company + professional presence + accounting system ready to use.</p>
+      </div>
+
+      <div>
+        <div class="sec-title">Guaranteed Deliverables</div>
+        <ul class="clean">
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Legal & Registration</strong>
+              <span>Company registered (EF or AB) + F-skatt completed + VAT registered if applicable.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Brand Basics</strong>
+              <span>1 logo + 1 color palette + 1 business card design.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Web Presence</strong>
+              <span>One-page website: Who we are + What we do + Contact form.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Accounting Setup</strong>
+              <span>Software account created + chart of accounts + invoice templates prepared.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sec-title">Not Included</div>
+        <ul class="clean">
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No ongoing accounting</strong>
+              <span>Bookkeeping is not included in Stage 1.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No marketing or ads</strong>
+              <span>No campaigns, no strategy, no performance promises.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No social media setup</strong>
+              <span>No pages and no content in Stage 1.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No custom work / unlimited revisions</strong>
+              <span>Only what is listed above. Fixed scope.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="exit">
+        <p><b>Exit Criteria:</b> Registration confirmed + website live + accounting access delivered.</p>
+      </div>
+    </article>
+
+    <!-- Stage 2 -->
+    <article class="stage">
+      <div class="stage-top">
+        <h3>Stage 2 — Operating Company</h3>
+        <span class="badge">Company Operates</span>
+      </div>
+      <p class="purpose"><b>Purpose:</b> Turn a registered company into an operating business that can sell and look active.</p>
+
+      <div class="outcome">
+        <p>✅ Guaranteed Outcome: Sales surface + legal compliance + social presence + accounting running (initial period).</p>
+      </div>
+
+      <div>
+        <div class="sec-title">Guaranteed Deliverables</div>
+        <ul class="clean">
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Includes Stage 1</strong>
+              <span>All deliverables from Solo Company are included.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Website or Basic Store</strong>
+              <span>5-page website (Home, Services, About, Contact, Legal) OR basic e-commerce setup.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Legal Compliance</strong>
+              <span>Privacy Policy (GDPR) + Terms & Conditions published.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Social Presence Pack</strong>
+              <span>Instagram + Facebook pages + profile setup + <b>15 branded ready-to-post posts</b>.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Accounting Included (Initial)</strong>
+              <span>Bookkeeping handled for a defined kickoff period, then transitions to subscription.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sec-title">Not Included</div>
+        <ul class="clean">
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No ongoing social posting</strong>
+              <span>We deliver pages + posts. We do not manage them long-term.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No growth strategy / guarantees</strong>
+              <span>No promises about sales, followers, or results.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No custom copywriting</strong>
+              <span>Client provides basic business info. We structure it.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No unlimited revisions</strong>
+              <span>Fixed scope. Changes require a change order.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="exit">
+        <p><b>Exit Criteria:</b> Website/store live + legal docs published + social pages live + 15 posts delivered + accounting kickoff completed.</p>
+      </div>
+    </article>
+
+    <!-- Stage 3 -->
+    <article class="stage">
+      <div class="stage-top">
+        <h3>Stage 3 — Growth-Ready Company</h3>
+        <span class="badge">Company Scales</span>
+      </div>
+      <p class="purpose"><b>Purpose:</b> Systemize the business so it can scale without breaking.</p>
+
+      <div class="outcome">
+        <p>✅ Guaranteed Outcome: Scalable tech + integrations + time-boxed launch + extended accounting kickoff.</p>
+      </div>
+
+      <div>
+        <div class="sec-title">Guaranteed Deliverables</div>
+        <ul class="clean">
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Includes Stage 2</strong>
+              <span>All deliverables from Operating Company are included.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Custom Digital Solution</strong>
+              <span>Advanced e-commerce OR custom web application (scope locked before start).</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Integrations</strong>
+              <span>Payments + shipping + approved business tools integrated.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Marketing Launch (Time-Boxed)</strong>
+              <span>Ad accounts setup + campaign structure + first month management only.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Priority Execution</strong>
+              <span>Dedicated project owner + priority delivery lane.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Accounting Included (Extended)</strong>
+              <span>Accounting handled for a longer kickoff period, then transitions to subscription.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="sec-title">Not Included</div>
+        <ul class="clean">
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No open-ended development</strong>
+              <span>No endless features. Scope is fixed before work begins.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No ongoing marketing management</strong>
+              <span>Launch is time-boxed. Long-term marketing is separate.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No fundraising / hiring</strong>
+              <span>We don’t do investor outreach or recruit teams inside this stage.</span>
+            </div>
+          </li>
+          <li class="item">
+            <div class="x" aria-hidden="true"></div>
+            <div>
+              <strong>No pivots mid-delivery</strong>
+              <span>Changing direction requires a new scope and a new agreement.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="exit">
+        <p><b>Exit Criteria:</b> Tech delivered as scoped + integrations live + launch month completed + accounting transition in place.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- Global Rules -->
+  <div class="rules" role="note" aria-label="Global rules">
+    <h4>Global Rules (Apply to All Stages)</h4>
+    <ul>
+      <li><b>Higher stages include lower stages.</b> No stage can be skipped.</li>
+      <li><b>No custom work inside stages.</b> If it’s not listed, it’s not included.</li>
+      <li><b>Exceptions are logged, not executed.</b> The system is improved between batches.</li>
+      <li><b>Scope changes require a change order.</b> Even if the invoice is 0 SEK.</li>
+    </ul>
+    <div class="tagline">One line definition: <b>Spikad delivers companies at fixed readiness levels through a controlled production system.</b></div>
+  </div>
+</div>

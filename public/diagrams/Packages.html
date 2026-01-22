@@ -1,0 +1,448 @@
+<!-- Spikad Packages – Production Line (copy/paste anywhere) -->
+<div class="spikad-pricing" aria-label="Spikad pricing packages">
+  <style>
+    /* Scoped styles so it won't affect the rest of the website */
+    .spikad-pricing{
+      --bg:#0b0b0f;
+      --card:#12121a;
+      --card2:#0f0f16;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.72);
+      --soft:rgba(255,255,255,.10);
+      --soft2:rgba(255,255,255,.06);
+      --accent:#7a5cff;
+      --accent2:#2ee6a6;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg, var(--bg), #07070b);
+      padding:28px;
+      border-radius:16px;
+      border:1px solid var(--soft);
+      max-width:1100px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+
+    .spikad-pricing *{ box-sizing:border-box; }
+
+    .spikad-header{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:18px;
+    }
+    .spikad-title{
+      font-size:22px;
+      line-height:1.2;
+      margin:0;
+      letter-spacing:-0.02em;
+    }
+    .spikad-sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      max-width:720px;
+    }
+
+    /* Progress line */
+    .spikad-progress{
+      position:relative;
+      padding:18px 12px 10px;
+      margin:18px 0 22px;
+      border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border:1px solid var(--soft2);
+      overflow:hidden;
+    }
+    .spikad-progress::before{
+      content:"";
+      position:absolute;
+      left:18px; right:18px;
+      top:34px;
+      height:3px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity:.55;
+    }
+    .spikad-steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+    }
+    .spikad-step{
+      position:relative;
+      padding:8px 10px 6px;
+      border-radius:12px;
+      text-align:left;
+    }
+    .spikad-step .dot{
+      width:12px; height:12px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(122,92,255,.15);
+      margin-bottom:10px;
+    }
+    .spikad-step:nth-child(2) .dot{
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+    .spikad-step:nth-child(3) .dot{
+      background:var(--accent2);
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+    .spikad-step .label{
+      font-weight:700;
+      font-size:13px;
+      letter-spacing:-0.01em;
+      margin:0 0 2px;
+    }
+    .spikad-step .desc{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    /* Cards grid */
+    .spikad-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .spikad-grid{ grid-template-columns:1fr; }
+      .spikad-steps{ grid-template-columns:1fr; }
+      .spikad-progress::before{ top:0; height:0; } /* remove line on mobile */
+    }
+
+    .spikad-card{
+      border-radius:16px;
+      background:linear-gradient(180deg, var(--card), var(--card2));
+      border:1px solid var(--soft);
+      padding:18px 16px;
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .spikad-card .kicker{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .spikad-badge{
+      font-size:11px;
+      color:rgba(255,255,255,.85);
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--soft);
+      background:rgba(255,255,255,.04);
+      white-space:nowrap;
+    }
+    .spikad-card h3{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-0.02em;
+    }
+    .spikad-for{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.45;
+    }
+
+    .spikad-section-title{
+      font-size:12px;
+      letter-spacing:0.02em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.65);
+      margin:4px 0 6px;
+    }
+
+    .spikad-list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .spikad-list li{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 10px;
+      border-radius:12px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .spikad-list .tick{
+      width:18px;
+      height:18px;
+      border-radius:6px;
+      background:rgba(46,230,166,.18);
+      border:1px solid rgba(46,230,166,.30);
+      flex:0 0 18px;
+      position:relative;
+      margin-top:1px;
+    }
+    .spikad-list .tick::after{
+      content:"";
+      position:absolute;
+      left:5px; top:3px;
+      width:6px; height:10px;
+      border-right:2px solid rgba(255,255,255,.85);
+      border-bottom:2px solid rgba(255,255,255,.85);
+      transform:rotate(40deg);
+    }
+    .spikad-list strong{
+      font-weight:700;
+      display:block;
+      font-size:13px;
+      margin-bottom:2px;
+    }
+    .spikad-list span{
+      display:block;
+      color:var(--muted);
+      font-size:12.5px;
+      line-height:1.35;
+    }
+
+    .spikad-result{
+      margin-top:auto;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(122,92,255,.25);
+      background:linear-gradient(90deg, rgba(122,92,255,.12), rgba(46,230,166,.08));
+    }
+    .spikad-result .rt{
+      margin:0 0 6px;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      color:rgba(255,255,255,.7);
+    }
+    .spikad-result .rv{
+      margin:0;
+      font-size:13px;
+      line-height:1.4;
+      color:rgba(255,255,255,.9);
+      font-weight:650;
+    }
+
+    .spikad-note{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.18);
+      color:rgba(255,255,255,.75);
+      font-size:12.5px;
+      line-height:1.45;
+    }
+  </style>
+
+  <div class="spikad-header">
+    <h2 class="spikad-title">Pricing Packages (Production Stages)</h2>
+    <p class="spikad-sub">
+      These are not “services”. Each plan delivers your company at a specific <b>readiness level</b>.
+      Higher plans include everything from the earlier stages.
+    </p>
+  </div>
+
+  <!-- Progress line / stages -->
+  <div class="spikad-progress" role="group" aria-label="Production stages">
+    <div class="spikad-steps">
+      <div class="spikad-step">
+        <div class="dot" aria-hidden="true"></div>
+        <p class="label">Stage 1 — Solo Company</p>
+        <p class="desc">Legal + professional basics. Ready to invoice and operate.</p>
+      </div>
+      <div class="spikad-step">
+        <div class="dot" aria-hidden="true"></div>
+        <p class="label">Stage 2 — Operating Company</p>
+        <p class="desc">Website/store + compliance + social presence. Ready to sell.</p>
+      </div>
+      <div class="spikad-step">
+        <div class="dot" aria-hidden="true"></div>
+        <p class="label">Stage 3 — Growth-Ready Company</p>
+        <p class="desc">Systems + integrations + launch. Ready to scale.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="spikad-grid">
+    <!-- Card 1 -->
+    <article class="spikad-card">
+      <div class="kicker">
+        <h3>Solo Company</h3>
+        <span class="spikad-badge">Stage 1</span>
+      </div>
+      <p class="spikad-for"><b>For:</b> side hustles, consultants, cleaners, freelancers, one-person businesses.</p>
+
+      <div>
+        <div class="spikad-section-title">You get</div>
+        <ul class="spikad-list">
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Company registration</strong>
+              <span>Enskild Firma or Aktiebolag + F-skatt + VAT registration (if needed).</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Basic brand kit</strong>
+              <span>Simple logo + color palette + business card design.</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>One-page website</strong>
+              <span>Who you are + what you offer + contact form (conversion-focused).</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Accounting system setup</strong>
+              <span>Software setup + chart of accounts + invoice templates ready.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="spikad-result">
+        <p class="rt">Result</p>
+        <p class="rv">You can legally operate, invoice clients, and look professional.</p>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="spikad-card">
+      <div class="kicker">
+        <h3>Operating Company</h3>
+        <span class="spikad-badge">Stage 2</span>
+      </div>
+      <p class="spikad-for"><b>For:</b> e-commerce, agencies, small teams, local businesses that must sell immediately.</p>
+
+      <div>
+        <div class="spikad-section-title">You get</div>
+        <ul class="spikad-list">
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Everything in Solo Company</strong>
+              <span>Includes all Stage 1 deliverables.</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Full website or basic store</strong>
+              <span>5-page website (Home, Services, About, Contact, Legal) OR basic e-commerce setup.</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Legal documents</strong>
+              <span>Privacy policy (GDPR) + Terms & Conditions.</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Social media presence pack</strong>
+              <span>Instagram + Facebook pages setup + profile design + <b>15 branded ready-to-post posts</b>.</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Accounting included (initial period)</strong>
+              <span>Bookkeeping handled for a short kickoff phase, then moves to monthly subscription.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="spikad-result">
+        <p class="rt">Result</p>
+        <p class="rv">Your business looks real, active, compliant, and ready to sell.</p>
+      </div>
+    </article>
+
+    <!-- Card 3 -->
+    <article class="spikad-card">
+      <div class="kicker">
+        <h3>Growth-Ready Company</h3>
+        <span class="spikad-badge">Stage 3</span>
+      </div>
+      <p class="spikad-for"><b>For:</b> startups, high-volume retail, founders building systems & scaling fast.</p>
+
+      <div>
+        <div class="spikad-section-title">You get</div>
+        <ul class="spikad-list">
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Everything in Operating Company</strong>
+              <span>Includes Stage 1 + Stage 2 deliverables.</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Custom digital solution</strong>
+              <span>Advanced e-commerce OR custom web application (defined scope).</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Integrations</strong>
+              <span>Payments + shipping + key business tools (as needed for the scope).</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Marketing launch (time-boxed)</strong>
+              <span>Ad accounts setup + campaign structure + first month management.</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Priority delivery</strong>
+              <span>Dedicated project lead + faster response and execution cadence.</span>
+            </div>
+          </li>
+          <li>
+            <div class="tick" aria-hidden="true"></div>
+            <div>
+              <strong>Extended accounting (initial period)</strong>
+              <span>Accounting included for a longer kickoff phase, then monthly subscription.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="spikad-result">
+        <p class="rt">Result</p>
+        <p class="rv">A company built to scale—systems in place, ready for growth.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="spikad-note">
+    <b>Important:</b> Packages are fixed. If it’s not listed, it’s not included.  
+    Custom work is handled only through a separate agreement.
+  </div>
+</div>

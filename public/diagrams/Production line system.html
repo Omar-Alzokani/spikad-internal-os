@@ -1,0 +1,481 @@
+<!-- Spikad Production Line System – "Carved in Stone" Visual (copy/paste anywhere) -->
+<div class="spikad-line" aria-label="Spikad Production Line System">
+  <style>
+    /* Scoped styles (won't affect the rest of your website) */
+    .spikad-line{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --panel2:#0f0f16;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.74);
+      --soft:rgba(255,255,255,.10);
+      --soft2:rgba(255,255,255,.06);
+      --accent:#7a5cff;
+      --accent2:#2ee6a6;
+      --danger:#ff5c7a;
+      --warn:#ffcc66;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg, var(--bg), #07070b);
+      padding:28px;
+      border-radius:16px;
+      border:1px solid var(--soft);
+      max-width:1200px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+    .spikad-line *{ box-sizing:border-box; }
+
+    /* Header */
+    .line-header{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:16px;
+    }
+    .line-title{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-0.02em;
+      line-height:1.2;
+    }
+    .line-sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      max-width:860px;
+      line-height:1.45;
+    }
+
+    /* Flow */
+    .flow{
+      margin-top:14px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--soft2);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      overflow:hidden;
+    }
+
+    .flow-grid{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:12px;
+      position:relative;
+    }
+
+    @media (max-width: 1050px){
+      .flow-grid{ grid-template-columns:1fr; }
+    }
+
+    /* Connector line (desktop only) */
+    @media (min-width: 1051px){
+      .flow-grid::before{
+        content:"";
+        position:absolute;
+        left:18px; right:18px;
+        top:46px;
+        height:3px;
+        border-radius:999px;
+        background:linear-gradient(90deg, var(--accent), var(--accent2));
+        opacity:.55;
+      }
+    }
+
+    .step{
+      position:relative;
+      border-radius:16px;
+      background:linear-gradient(180deg, var(--panel), var(--panel2));
+      border:1px solid var(--soft);
+      padding:16px 14px;
+      min-height:100%;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .step-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .dot{
+      width:12px; height:12px;
+      border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(122,92,255,.15);
+      margin-top:2px;
+      flex:0 0 12px;
+    }
+    .step:nth-child(2) .dot{
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+    .step:nth-child(3) .dot{
+      background:linear-gradient(90deg, var(--accent), var(--accent2));
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+    .step:nth-child(4) .dot{
+      background:var(--accent2);
+      box-shadow:0 0 0 6px rgba(46,230,166,.12);
+    }
+
+    .badge{
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--soft);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.85);
+      white-space:nowrap;
+    }
+
+    .step h3{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-0.02em;
+      line-height:1.25;
+    }
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:12.7px;
+      line-height:1.45;
+    }
+
+    .mini{
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+    .mini .k{
+      margin:0 0 6px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      color:rgba(255,255,255,.62);
+    }
+    .mini ul{
+      margin:0;
+      padding-left:16px;
+      color:rgba(255,255,255,.82);
+      font-size:12.5px;
+      line-height:1.5;
+    }
+    .mini li{ margin:5px 0; }
+
+    .key{
+      margin-top:auto;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(122,92,255,.25);
+      background:linear-gradient(90deg, rgba(122,92,255,.12), rgba(46,230,166,.08));
+      color:rgba(255,255,255,.90);
+      font-size:12.8px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    /* Handover emphasis */
+    .handover{
+      border:1px solid rgba(46,230,166,.22);
+      box-shadow:0 0 0 1px rgba(46,230,166,.08) inset;
+    }
+    .handover .key{
+      border:1px solid rgba(46,230,166,.22);
+      background:rgba(46,230,166,.08);
+    }
+
+    /* "Carved in stone" rules */
+    .stone{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 900px){
+      .stone{ grid-template-columns:1fr; }
+    }
+
+    .box{
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.10);
+      padding:14px 14px;
+    }
+    .box h4{
+      margin:0 0 10px;
+      font-size:14px;
+      letter-spacing:-0.01em;
+    }
+
+    .rule{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      padding:10px 10px;
+      border-radius:12px;
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.06);
+      margin:8px 0;
+    }
+
+    .icon{
+      width:18px; height:18px;
+      border-radius:6px;
+      flex:0 0 18px;
+      position:relative;
+      margin-top:1px;
+    }
+    .ok{ background:rgba(46,230,166,.18); border:1px solid rgba(46,230,166,.30); }
+    .ok::after{
+      content:"";
+      position:absolute;
+      left:5px; top:3px;
+      width:6px; height:10px;
+      border-right:2px solid rgba(255,255,255,.85);
+      border-bottom:2px solid rgba(255,255,255,.85);
+      transform:rotate(40deg);
+    }
+
+    .no{ background:rgba(255,92,122,.16); border:1px solid rgba(255,92,122,.30); }
+    .no::before, .no::after{
+      content:"";
+      position:absolute;
+      left:4px; top:8px;
+      width:10px; height:2px;
+      background:rgba(255,255,255,.85);
+      border-radius:2px;
+    }
+    .no::before{ transform:rotate(45deg); }
+    .no::after{ transform:rotate(-45deg); }
+
+    .rule strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:2px;
+      font-weight:850;
+      color:rgba(255,255,255,.92);
+    }
+    .rule span{
+      display:block;
+      font-size:12.5px;
+      color:rgba(255,255,255,.74);
+      line-height:1.4;
+    }
+
+    .footer-line{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      color:rgba(255,255,255,.82);
+      font-size:12.8px;
+      line-height:1.45;
+      font-weight:650;
+    }
+    .footer-line b{ color:rgba(255,255,255,.95); }
+  </style>
+
+  <div class="line-header">
+    <h2 class="line-title">Production Line System (Carved in Stone)</h2>
+    <p class="line-sub">
+      Every client moves through the same factory flow.
+      Stages (1/2/3) change <b>what modules activate</b> in the Build step — not the core flow.
+      There is <b>one client handover only</b>: at the end.
+    </p>
+  </div>
+
+  <div class="flow" role="group" aria-label="Production flow">
+    <div class="flow-grid">
+      <!-- Step 1 -->
+      <section class="step">
+        <div class="step-top">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>1) Intake & Build Map</h3>
+              <p><b>Purpose:</b> Decide exactly what gets built (no work starts yet).</p>
+            </div>
+          </div>
+          <span class="badge">Gate 0</span>
+        </div>
+
+        <div class="mini">
+          <p class="k">Outputs</p>
+          <ul>
+            <li>Purchased stage confirmed (1 / 2 / 3)</li>
+            <li>Company type (EF / AB)</li>
+            <li>Complexity flags (payroll, EU sales, integrations)</li>
+            <li><b>Build Map:</b> Modules ON / OFF / UPGRADED</li>
+          </ul>
+        </div>
+
+        <div class="key">Rule: No production starts before the Build Map exists.</div>
+      </section>
+
+      <!-- Step 2 -->
+      <section class="step">
+        <div class="step-top">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>2) Formation (Backend Only)</h3>
+              <p><b>Purpose:</b> Make the company legally alive + accounting system created.</p>
+            </div>
+          </div>
+          <span class="badge">Stage 1 Core</span>
+        </div>
+
+        <div class="mini">
+          <p class="k">Always included</p>
+          <ul>
+            <li>Company registration</li>
+            <li>F-skatt / VAT (if applicable)</li>
+            <li>Accounting system setup</li>
+          </ul>
+        </div>
+
+        <div class="key">Important: Formation is <b>not</b> delivered to the client. It is internal.</div>
+      </section>
+
+      <!-- Step 3 -->
+      <section class="step">
+        <div class="step-top">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>3) Build (Modules Activate)</h3>
+              <p><b>Purpose:</b> Build only what is required to reach the purchased readiness stage.</p>
+            </div>
+          </div>
+          <span class="badge">Stage 1/2/3 Logic</span>
+        </div>
+
+        <div class="mini">
+          <p class="k">Key principle</p>
+          <ul>
+            <li>Modules are ON / OFF / UPGRADED by the Build Map</li>
+            <li>Higher stages <b>replace</b> lower-resolution modules</li>
+            <li>Example: Stage 2 website replaces Stage 1 landing page</li>
+          </ul>
+        </div>
+
+        <div class="key">Rule: Modules <b>override</b> — they never stack or duplicate.</div>
+      </section>
+
+      <!-- Step 4 -->
+      <section class="step handover">
+        <div class="step-top">
+          <div style="display:flex; gap:10px; align-items:flex-start;">
+            <div class="dot" aria-hidden="true"></div>
+            <div>
+              <h3>4) Handover (Only Client Exit)</h3>
+              <p><b>Purpose:</b> Deliver the finished company + lock ongoing accounting.</p>
+            </div>
+          </div>
+          <span class="badge">Factory Exit</span>
+        </div>
+
+        <div class="mini">
+          <p class="k">Handover checklist</p>
+          <ul>
+            <li>Deliverables verified (exit criteria met)</li>
+            <li>Access transferred (systems & accounts)</li>
+            <li>Accounting plan confirmed + autopay set</li>
+            <li>Client responsibilities explained</li>
+            <li>Production ticket closed</li>
+          </ul>
+        </div>
+
+        <div class="key">Golden Rule: There is <b>one handover only</b> per production cycle.</div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Carved-in-stone rules -->
+  <div class="stone" role="note" aria-label="Carved in stone rules">
+    <div class="box">
+      <h4>✅ What We Do (Always)</h4>
+
+      <div class="rule">
+        <div class="icon ok" aria-hidden="true"></div>
+        <div>
+          <strong>Follow the Build Map</strong>
+          <span>Only modules marked ON are built. Upgrades replace lower versions.</span>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="icon ok" aria-hidden="true"></div>
+        <div>
+          <strong>One finished delivery</strong>
+          <span>We deliver at handover. We do not show unfinished work in production.</span>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="icon ok" aria-hidden="true"></div>
+        <div>
+          <strong>Protect boundaries</strong>
+          <span>If it’s not listed, it’s not included. Scope changes require a change order.</span>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="icon ok" aria-hidden="true"></div>
+        <div>
+          <strong>Improve between batches</strong>
+          <span>We fix the system after delivery — not during client production.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h4>❌ What We Never Do</h4>
+
+      <div class="rule">
+        <div class="icon no" aria-hidden="true"></div>
+        <div>
+          <strong>No partial handovers</strong>
+          <span>No “quick delivery” of parts. No mid-production client reviews.</span>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="icon no" aria-hidden="true"></div>
+        <div>
+          <strong>No exceptions inside production</strong>
+          <span>Exceptions are logged for system improvement — never executed.</span>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="icon no" aria-hidden="true"></div>
+        <div>
+          <strong>No stacking modules</strong>
+          <span>Stage 2 does not include Stage 1 landing page. Stage 3 does not include Stage 2 website if replaced.</span>
+        </div>
+      </div>
+
+      <div class="rule">
+        <div class="icon no" aria-hidden="true"></div>
+        <div>
+          <strong>No selling custom scope</strong>
+          <span>Sales cannot modify stages. If needs are different, it becomes a new order.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-line">
+    <b>One-line definition:</b> Spikad runs a factory flow: <b>Intake → Formation → Build → Handover</b>.  
+    Stages (1/2/3) change which modules activate in <b>Build</b>. There is <b>one client handover only</b>.
+  </div>
+</div>
