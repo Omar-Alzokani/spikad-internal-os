@@ -1,0 +1,253 @@
+<!-- Spikad Organisation Structure – Roles & Authority (Hiring-Ready) -->
+<div class="spikad-org" aria-label="Spikad Organisation Structure and Authority Map">
+  <style>
+    .spikad-org{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --panel2:#0f0f16;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.78);
+      --soft:rgba(255,255,255,.10);
+      --soft2:rgba(255,255,255,.06);
+      --accent:#7a5cff;
+      --accent2:#2ee6a6;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,var(--bg),#07070b);
+      color:var(--text);
+      padding:28px;
+      border-radius:16px;
+      border:1px solid var(--soft);
+      max-width:1200px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+    .spikad-org *{ box-sizing:border-box; }
+
+    .hdr{ margin-bottom:16px; }
+    .title{
+      margin:0 0 6px;
+      font-size:22px;
+      letter-spacing:-0.02em;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      max-width:950px;
+      line-height:1.45;
+    }
+
+    .tree{
+      margin-top:16px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--soft2);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+    }
+
+    .node{
+      border-radius:16px;
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--soft);
+      padding:14px;
+    }
+    .node h3{
+      margin:0;
+      font-size:16px;
+      letter-spacing:-0.02em;
+    }
+    .role{
+      margin:4px 0 10px;
+      font-size:12.5px;
+      color:var(--muted);
+    }
+
+    .mini{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+    .mini ul{
+      margin:0;
+      padding-left:16px;
+      font-size:12.5px;
+      line-height:1.45;
+      color:rgba(255,255,255,.85);
+    }
+    .mini li{ margin:6px 0; }
+    .mini b{ color:#fff; }
+
+    .leaders{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      margin-bottom:14px;
+    }
+
+    .divider{
+      height:3px;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      opacity:.55;
+      margin:14px 0;
+    }
+
+    .heads{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+    }
+    @media (max-width:1100px){
+      .heads{ grid-template-columns:repeat(2,1fr); }
+    }
+    @media (max-width:700px){
+      .heads{ grid-template-columns:1fr; }
+    }
+
+    .badge{
+      display:inline-block;
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.88);
+      margin-top:8px;
+    }
+
+    .law{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      font-size:12.8px;
+      font-weight:700;
+      color:rgba(255,255,255,.9);
+    }
+  </style>
+
+  <div class="hdr">
+    <h2 class="title">Spikad Organisation Structure</h2>
+    <p class="sub">
+      Clear command structure from top to bottom. One Architect, one CEO, and one owner per production stage.
+      This is how we avoid agency chaos and operate as a company factory.
+    </p>
+  </div>
+
+  <div class="tree">
+
+    <!-- TOP LEADERSHIP -->
+    <div class="leaders">
+
+      <!-- Omar -->
+      <section class="node">
+        <h3>Omar — Founder & Chief Architect</h3>
+        <p class="role">Owns the system, the product, and the exit.</p>
+        <div class="mini">
+          <ul>
+            <li>Designs and evolves the <b>production line system</b></li>
+            <li>Defines <b>packages, guarantees, and exclusions</b></li>
+            <li>Builds and owns the <b>Spikad platform</b></li>
+            <li>Designs the <b>exit strategy</b> (Fortnox / Visma / VC)</li>
+            <li>Does <b>not</b> run daily operations or client delivery</li>
+          </ul>
+        </div>
+        <span class="badge">Designs the machine</span>
+      </section>
+
+      <!-- Ayham -->
+      <section class="node">
+        <h3>Ayham — CEO / Factory Manager</h3>
+        <p class="role">Runs the factory and enforces discipline.</p>
+        <div class="mini">
+          <ul>
+            <li>Owns <b>company-wide KPIs</b> and production performance</li>
+            <li>Manages flow between Intake → Formation → Build → Handover</li>
+            <li>Identifies and removes <b>bottlenecks</b></li>
+            <li>Allocates resources between stages</li>
+            <li>Enforces <b>no-exceptions</b> and scope discipline</li>
+          </ul>
+        </div>
+        <span class="badge">Runs the machine</span>
+      </section>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- STAGE OWNERS -->
+    <div class="heads">
+
+      <!-- Intake -->
+      <section class="node">
+        <h3>Nidal — Head of Intake & Growth</h3>
+        <p class="role">Stage Owner: Intake</p>
+        <div class="mini">
+          <ul>
+            <li>Manages <b>sales pipeline</b> and first client calls</li>
+            <li>Runs <b>SOME & marketing campaigns</b> (with interns)</li>
+            <li>Generates and qualifies <b>leads</b></li>
+            <li>Matches clients to the <b>correct package</b></li>
+            <li>Creates and locks the <b>Build Map</b></li>
+            <li>Does <b>not</b> deliver websites or design</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Formation -->
+      <section class="node">
+        <h3>Malek — Head of Formation & Accounting</h3>
+        <p class="role">Stage Owner: Formation</p>
+        <div class="mini">
+          <ul>
+            <li>Registers <b>EF / AB</b> companies</li>
+            <li>Handles <b>F-skatt, VAT, and compliance</b></li>
+            <li>Sets up <b>accounting systems</b></li>
+            <li>Runs ongoing <b>monthly accounting</b></li>
+            <li>Manages junior accountants</li>
+            <li>Rejects incomplete or risky setups</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Build -->
+      <section class="node">
+        <h3>Ammar — Head of Build & Quality</h3>
+        <p class="role">Stage Owner: Build</p>
+        <div class="mini">
+          <ul>
+            <li>Owns quality of <b>branding, websites, and SOME assets</b></li>
+            <li>Decides final <b>design direction</b></li>
+            <li>Manages Elias and external developers</li>
+            <li>Ensures delivery matches the <b>Build Map</b></li>
+            <li>Prevents rework and scope drift</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Handover -->
+      <section class="node">
+        <h3>Nana — Head of Delivery & Accounts</h3>
+        <p class="role">Stage Owner: Handover</p>
+        <div class="mini">
+          <ul>
+            <li>Main <b>client communication</b> during delivery</li>
+            <li>Handles feedback and routes <b>Change Orders</b></li>
+            <li>Delivers final assets and access</li>
+            <li>Manages <b>client accounts</b> post-delivery</li>
+            <li>Ensures clean project closure</li>
+          </ul>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="law">
+      Non-negotiable rule: <b>One owner per stage.</b>  
+      No cross-stage work. No exceptions. Everything else becomes a new order.
+    </div>
+
+  </div>
+</div>
