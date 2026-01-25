@@ -1,0 +1,130 @@
+<!-- Spikad Transition Snapshot – Old vs New System -->
+<div class="spikad-transition">
+  <style>
+    .spikad-transition{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.75);
+      --soft:rgba(255,255,255,.10);
+      --accent:#7a5cff;
+      --ok:#2ee6a6;
+      --warn:#ffcc66;
+
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,var(--bg),#07070b);
+      color:var(--text);
+      padding:28px;
+      border-radius:16px;
+      border:1px solid var(--soft);
+      max-width:1100px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+
+    .title{
+      margin:0 0 6px;
+      font-size:22px;
+      letter-spacing:-0.02em;
+    }
+    .sub{
+      margin:0 0 18px;
+      font-size:13px;
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    @media(max-width:900px){
+      .grid{ grid-template-columns:1fr; }
+    }
+
+    .box{
+      background:linear-gradient(180deg,var(--panel),#0f0f16);
+      border:1px solid var(--soft);
+      border-radius:16px;
+      padding:16px;
+    }
+
+    .box h3{
+      margin:0 0 8px;
+      font-size:16px;
+      letter-spacing:-0.02em;
+    }
+
+    .tag{
+      display:inline-block;
+      font-size:11px;
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:10px;
+      border:1px solid var(--soft);
+      background:rgba(255,255,255,.04);
+    }
+
+    .old{ color:var(--warn); border-color:rgba(255,204,102,.4); }
+    .new{ color:var(--ok); border-color:rgba(46,230,166,.4); }
+
+    ul{
+      margin:0;
+      padding-left:16px;
+      font-size:13px;
+      line-height:1.5;
+    }
+    li{ margin:6px 0; }
+
+    .deadline{
+      margin-top:18px;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(255,204,102,.4);
+      background:rgba(255,204,102,.08);
+      font-size:14px;
+      font-weight:700;
+      text-align:center;
+    }
+  </style>
+
+  <h2 class="title">Transition Snapshot</h2>
+  <p class="sub">
+    Clear split between <b>old projects</b> and <b>new projects</b>.  
+    No overlap. No shared ownership.
+  </p>
+
+  <div class="grid">
+
+    <!-- OLD PROJECTS -->
+    <div class="box">
+      <span class="tag old">OLD PROJECTS</span>
+      <h3>Legacy System (Closing Phase)</h3>
+      <ul>
+        <li><b>Nidal</b> finishes all existing website projects</li>
+        <li><b>Omar</b> oversees delivery of old commitments</li>
+        <li><b>No new scope added</b></li>
+        <li><b>No new clients enter old system</b></li>
+      </ul>
+    </div>
+
+    <!-- NEW PROJECTS -->
+    <div class="box">
+      <span class="tag new">NEW PROJECTS</span>
+      <h3>New Factory System (Active)</h3>
+      <ul>
+        <li><b>Ammar</b> owns Build stage for all new projects</li>
+        <li><b>Nidal</b> is fully focused on Intake "CMO" role</li>
+        <li><b>Ayham</b> acts as Factory CEO for all new projects</li>
+        <li><b>All work follows the new production line</b></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="deadline">
+    ⏳ Deadline: <b>All old projects must be delivered within 2 weeks</b>  
+    <br>After this date, only the new system exists.
+  </div>
+
+</div>
