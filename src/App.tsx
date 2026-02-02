@@ -17,6 +17,8 @@ const DOCS: DocItem[] = [
   { id: "internal-process", title: "Internal Process Design (Visual)", filename: "Internal Process Design (Visual).html" },
   { id: "org-structure", title: "Org Structure", filename: "Org structure.html" },
   { id: "transition-snapshot", title: "Transition Snapshot", filename: "Transition Snapshot.html" },
+  { id: "bundle-prices", title: "Bundle Prices", filename: "Bundel prices.html" },
+  { id: "services-prices", title: "Services Prices", filename: "Services prices.html" },
 ];
 
 function App() {
