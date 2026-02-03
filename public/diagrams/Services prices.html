@@ -1,128 +1,148 @@
 <!-- Spikad Services Price List (A-la-carte) -->
 <div class="spikad-services" aria-label="Spikad individual services price list">
   <style>
-    .spikad-services{
-      --bg:#0b0b10;
-      --panel:#12121a;
-      --panel2:#0f0f16;
-      --text:#ffffff;
-      --muted:rgba(255,255,255,.75);
-      --soft:rgba(255,255,255,.10);
-      --soft2:rgba(255,255,255,.06);
-      --accent:#7a5cff;
-      --accent2:#2ee6a6;
-      --warn:#ffcc66;
+    .spikad-services {
+      --bg: #0b0b10;
+      --panel: #12121a;
+      --panel2: #0f0f16;
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, .75);
+      --soft: rgba(255, 255, 255, .10);
+      --soft2: rgba(255, 255, 255, .06);
+      --accent: #7a5cff;
+      --accent2: #2ee6a6;
+      --warn: #ffcc66;
 
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:linear-gradient(180deg,var(--bg),#07070b);
-      color:var(--text);
-      padding:28px;
-      border-radius:16px;
-      border:1px solid var(--soft);
-      max-width:1100px;
-      margin:0 auto;
-      box-sizing:border-box;
-    }
-    .spikad-services *{ box-sizing:border-box; }
-
-    .hdr{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:flex-end;
-      justify-content:space-between;
-      margin-bottom:16px;
-    }
-    h2{
-      margin:0;
-      font-size:22px;
-      letter-spacing:-0.02em;
-    }
-    .sub{
-      margin:0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.45;
-      max-width:780px;
+      background: linear-gradient(180deg, var(--bg), #07070b);
+      color: var(--text);
+      padding: 28px;
+      border-radius: 16px;
+      border: 1px solid var(--soft);
+      max-width: 1100px;
+      margin: 0 auto;
+      box-sizing: border-box;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:14px;
-    }
-    @media(max-width:900px){ .grid{ grid-template-columns:1fr; } }
-
-    .card{
-      background:linear-gradient(180deg,var(--panel),var(--panel2));
-      border:1px solid var(--soft);
-      border-radius:16px;
-      padding:16px;
-    }
-    .card h3{
-      margin:0 0 10px;
-      font-size:14px;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      color:rgba(255,255,255,.75);
+    .spikad-services * {
+      box-sizing: border-box;
     }
 
-    .item{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.06);
-      background:rgba(255,255,255,.03);
-      margin-bottom:10px;
-    }
-    .item:last-child{ margin-bottom:0; }
-
-    .txt strong{
-      display:block;
-      font-size:13.5px;
-      margin-bottom:3px;
-      letter-spacing:-0.01em;
-    }
-    .txt span{
-      display:block;
-      font-size:12.5px;
-      color:var(--muted);
-      line-height:1.35;
-    }
-    .price{
-      flex:0 0 auto;
-      font-weight:900;
-      font-size:13px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      white-space:nowrap;
+    .hdr {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 16px;
     }
 
-    .note{
-      margin-top:14px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px dashed rgba(255,255,255,.18);
-      color:rgba(255,255,255,.80);
-      font-size:12.5px;
-      line-height:1.45;
+    h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.02em;
     }
-    .note b{ color:#fff; }
-    .badge{
-      display:inline-block;
-      margin-left:6px;
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,204,102,.35);
-      background:rgba(255,204,102,.10);
-      color:rgba(255,255,255,.90);
-      white-space:nowrap;
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      max-width: 780px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media(max-width:900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel), var(--panel2));
+      border: 1px solid var(--soft);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: rgba(255, 255, 255, .75);
+    }
+
+    .item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .06);
+      background: rgba(255, 255, 255, .03);
+      margin-bottom: 10px;
+    }
+
+    .item:last-child {
+      margin-bottom: 0;
+    }
+
+    .txt strong {
+      display: block;
+      font-size: 13.5px;
+      margin-bottom: 3px;
+      letter-spacing: -0.01em;
+    }
+
+    .txt span {
+      display: block;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .price {
+      flex: 0 0 auto;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, .10);
+      background: rgba(255, 255, 255, .04);
+      white-space: nowrap;
+    }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px dashed rgba(255, 255, 255, .18);
+      color: rgba(255, 255, 255, .80);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .note b {
+      color: #fff;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-left: 6px;
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 204, 102, .35);
+      background: rgba(255, 204, 102, .10);
+      color: rgba(255, 255, 255, .90);
+      white-space: nowrap;
     }
   </style>
 
@@ -131,6 +151,7 @@
     <p class="sub">
       Fixed prices, clear outputs. <b>All prices are excl. VAT</b>.
       <span class="badge">Bundle pricing is cheaper</span>
+      <span class="badge">Hourly rate for additionl services 850</span>
     </p>
   </div>
 
@@ -192,7 +213,7 @@
           <strong>One-page website</strong>
           <span>Landing page + contact form. Fast & clean.</span>
         </div>
-        <div class="price">1,000 SEK</div>
+        <div class="price">1,500 SEK</div>
       </div>
 
       <div class="item">
@@ -228,7 +249,8 @@
 
   <div class="note">
     <b>Important:</b>
-    Accounting system setup (1,500 SEK) becomes <b>FREE</b> if the client signs an accounting subscription (Standard/Advanced/Ultimate).
+    Accounting system setup (1,500 SEK) becomes <b>FREE</b> if the client signs an accounting subscription
+    (Standard/Advanced/Ultimate).
     Anything not listed is not included. Extras are sold as a new order.
   </div>
 </div>
