@@ -20,6 +20,7 @@ const DOCS: DocItem[] = [
   { id: "org-structure", title: "Org Structure", filename: "Org structure.html" },
   { id: "transition-snapshot", title: "Transition Snapshot", filename: "Transition Snapshot.html" },
   { id: "intake-system", title: "Intake System", filename: "Intake system.html" },
+  { id: "build-system", title: "Build System", filename: "Build system.html" },
 ];
 
 function App() {
