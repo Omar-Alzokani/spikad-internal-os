@@ -21,6 +21,7 @@ const DOCS: DocItem[] = [
   { id: "transition-snapshot", title: "Transition Snapshot", filename: "Transition Snapshot.html" },
   { id: "intake-system", title: "Intake System", filename: "Intake system.html" },
   { id: "build-system", title: "Build System", filename: "Build system.html" },
+  { id: "operation-system", title: "Operation System", filename: "Operation system.html" },
 ];
 
 function App() {
