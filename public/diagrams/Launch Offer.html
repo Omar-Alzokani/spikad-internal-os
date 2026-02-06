@@ -1,0 +1,293 @@
+<!-- Spikad Offer Sheet (Summary + Swedish + Arabic) -->
+<div class="spikad-offer-sheet" aria-label="Spikad offer sheet for intake team">
+  <style>
+    .spikad-offer-sheet{
+      --bg:#0b0b10;
+      --panel:#12121a;
+      --panel2:#0f0f16;
+      --text:#ffffff;
+      --muted:rgba(255,255,255,.75);
+      --soft:rgba(255,255,255,.10);
+      --soft2:rgba(255,255,255,.06);
+      --accent:#7a5cff;
+      --accent2:#2ee6a6;
+      --warn:#ffcc66;
+
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:linear-gradient(180deg,var(--bg),#07070b);
+      color:var(--text);
+      padding:28px;
+      border-radius:16px;
+      border:1px solid var(--soft);
+      max-width:1100px;
+      margin:0 auto;
+      box-sizing:border-box;
+    }
+    .spikad-offer-sheet *{ box-sizing:border-box; }
+
+    .hdr{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:flex-end;
+      justify-content:space-between;
+      margin-bottom:14px;
+    }
+    .hdr h2{
+      margin:0;
+      font-size:22px;
+      letter-spacing:-0.02em;
+      line-height:1.2;
+    }
+    .hdr p{
+      margin:0;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.45;
+      max-width:920px;
+    }
+
+    .summary{
+      border-radius:16px;
+      background:linear-gradient(135deg, rgba(46,230,166,.10), rgba(122,92,255,.10));
+      border:1px solid rgba(255,255,255,.10);
+      padding:16px;
+      margin-bottom:14px;
+    }
+    .summary .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.9);
+      margin-bottom:10px;
+      white-space:nowrap;
+    }
+    .summary h3{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:-0.02em;
+      line-height:1.15;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:10px;
+    }
+    @media(max-width:980px){
+      .grid3{ grid-template-columns:1fr; }
+    }
+    .box{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      padding:12px 12px;
+    }
+    .box strong{
+      display:block;
+      font-size:12.8px;
+      letter-spacing:-0.01em;
+      margin-bottom:4px;
+      color:#fff;
+    }
+    .box span{
+      display:block;
+      font-size:12.2px;
+      color:var(--muted);
+      line-height:1.35;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media(max-width:980px){
+      .layout{ grid-template-columns:1fr; }
+    }
+
+    .card{
+      border-radius:16px;
+      background:linear-gradient(180deg,var(--panel),var(--panel2));
+      border:1px solid var(--soft);
+      padding:18px 16px;
+    }
+    .card h4{
+      margin:0 0 8px;
+      font-size:14px;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      color:rgba(255,255,255,.75);
+    }
+    .card .lead{
+      margin:0 0 12px;
+      font-size:13px;
+      color:rgba(255,255,255,.88);
+      line-height:1.45;
+    }
+
+    .msg{
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      padding:12px 12px;
+      margin-bottom:10px;
+    }
+    .msg:last-child{ margin-bottom:0; }
+
+    .msg .title{
+      margin:0 0 6px;
+      font-size:13.5px;
+      font-weight:950;
+      letter-spacing:-0.01em;
+    }
+    .msg p{
+      margin:0;
+      font-size:12.4px;
+      color:var(--muted);
+      line-height:1.45;
+    }
+
+    .rules{
+      margin-top:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.18);
+      color:rgba(255,255,255,.82);
+      font-size:12.3px;
+      line-height:1.45;
+    }
+    .rules b{ color:#fff; }
+
+    /* Arabic column */
+    .ar{
+      direction: rtl;
+      text-align: right;
+      font-family: "Tajawal", "Cairo", Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+  </style>
+
+  <div class="hdr">
+    <h2>Launch Offer Sheet — Accounting (12 months) + Website Included</h2>
+    <p>
+      One offer. Simple promise. Built for recurring revenue and factory delivery.
+      Use this sheet to keep messaging consistent across calls, DMs, and follow-ups.
+    </p>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary" aria-label="Offer summary">
+    <div class="pill">OFFER SUMMARY • FACTORY-SAFE • NO DISCOUNT LANGUAGE</div>
+    <h3>When the client commits to 12 months accounting, we include the company website.</h3>
+
+    <div class="grid3">
+      <div class="box">
+        <strong>What they commit to</strong>
+        <span>12-month accounting subscription (Standard / Advanced / Ultimate).</span>
+      </div>
+      <div class="box">
+        <strong>What they get included</strong>
+        <span>Factory 5-page website + delivery pack. Accounting system setup included for subscribers.</span>
+      </div>
+      <div class="box">
+        <strong>Price rule (clean)</strong>
+        <span>Monthly accounting price × 12 months. Website is included (not a discount).</span>
+      </div>
+    </div>
+
+    <div class="rules">
+      <b>Limits (non-negotiable):</b> Website is standard (no custom pages/features) · No e-commerce · Extra requests become a new order · One offer only (no stacking freebies).
+    </div>
+  </div>
+
+  <!-- Two-column messaging -->
+  <div class="layout">
+
+    <!-- Swedish -->
+    <section class="card" aria-label="Swedish messaging">
+      <h4>Svenska (human messaging)</h4>
+      <p class="lead">
+        Ton: lugn, trygg, vuxen. Ingen hype. Fokus: stabilitet + att vi stannar kvar.
+      </p>
+
+      <div class="msg">
+        <p class="title">Version 1 — Trygg & tydlig</p>
+        <p>
+          Starta företag – och ha någon kvar efteråt.<br>
+          När du tecknar bokföring hos oss i 12 månader ingår din företagswebbplats,
+          så att du kan lansera ordentligt från dag ett.<br>
+          Inga överraskningar. Bara ett företag som faktiskt fungerar.
+        </p>
+      </div>
+
+      <div class="msg">
+        <p class="title">Version 2 — Problemmedveten</p>
+        <p>
+          Registrering är bara början. Det som avgör om ett företag överlever är ordning och uppföljning.<br>
+          Därför: 12 månader bokföring hos oss – webbplats ingår.<br>
+          Vi stannar kvar. Det är hela poängen.
+        </p>
+      </div>
+
+      <div class="msg">
+        <p class="title">Version 3 — Superkort (annons/DM)</p>
+        <p>
+          Bokföring i 12 månader.<br>
+          Webbplats ingår.<br>
+          För dig som vill starta företag på riktigt.
+        </p>
+      </div>
+
+      <div class="rules">
+        <b>Intake note:</b> Rekommendera som “säkraste vägen” – inte som “erbjudande/rea”. Säg: “Det här passar dig eftersom…”
+      </div>
+    </section>
+
+    <!-- Arabic -->
+    <section class="card ar" aria-label="Arabic messaging">
+      <h4>العربي (رسائل بشرية)</h4>
+      <p class="lead">
+        النبرة: هادية وواضحة. بدون مبالغة. الفكرة: أمان + متابعة + بداية صح.
+      </p>
+
+      <div class="msg">
+        <p class="title">نسخة 1 — ثقة وراحة</p>
+        <p>
+          افتح شركتك… ونحن نبقى معك بعدها.<br>
+          لما تشترك معنا بالمحاسبة لمدة 12 شهر، موقع شركتك بيكون جاهز معنا من البداية.<br>
+          بدون مفاجآت. بدون لف ودوران. شغل مرتب من أول يوم.
+        </p>
+      </div>
+
+      <div class="msg">
+        <p class="title">نسخة 2 — واقعية</p>
+        <p>
+          المشكلة مو بتأسيس الشركة… المشكلة بعد التأسيس.<br>
+          لذلك: لما تلتزم معنا بالمحاسبة لمدة سنة، منجهز لك موقع الشركة كجزء من البداية الصح.<br>
+          لأننا ما منتركك بنص الطريق.
+        </p>
+      </div>
+
+      <div class="msg">
+        <p class="title">نسخة 3 — قصيرة جداً (DM/إعلان)</p>
+        <p>
+          محاسبة لمدة سنة.<br>
+          موقع الشركة معنا.<br>
+          هيك بتبلّش صح.
+        </p>
+      </div>
+
+      <div class="rules">
+        <b>ملاحظة للـ Intake:</b> قدّمها كخيار “الأكثر أماناً” مو كـ “عرض وخصم”. قول: “هذا الأنسب إلك لأن…”
+      </div>
+    </section>
+
+  </div>
+</div>
