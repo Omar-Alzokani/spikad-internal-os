@@ -1,0 +1,388 @@
+<!-- Spikad — 2-Layer Content System (Volume-Based) -->
+<section class="spikad-system" aria-label="Spikad 2-layer content system">
+  <style>
+    .spikad-system{
+      --bg:#0b1220;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.09);
+      --stroke:rgba(255,255,255,.10);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --muted2:rgba(255,255,255,.55);
+      --good:#22c55e;
+      --warn:#fbbf24;
+      --blue:#60a5fa;
+      --pink:#f472b6;
+      --cyan:#22d3ee;
+      --shadow:0 16px 50px rgba(0,0,0,.45);
+      --radius:18px;
+      background:
+        radial-gradient(1200px 600px at 20% -20%, rgba(96,165,250,.22), transparent 55%),
+        radial-gradient(900px 500px at 110% 10%, rgba(244,114,182,.18), transparent 50%),
+        radial-gradient(800px 500px at 30% 120%, rgba(34,211,238,.14), transparent 50%),
+        linear-gradient(180deg, #0b1220 0%, #070b14 100%);
+      color:var(--text);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:24px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      overflow:hidden;
+    }
+    .spikad-wrap{max-width:1100px;margin:0 auto;}
+    .spikad-top{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px;}
+    .spikad-title h2{margin:0;font-size:26px;letter-spacing:-.02em;line-height:1.12;}
+    .spikad-title p{margin:10px 0 0;color:var(--muted);max-width:70ch;line-height:1.55;}
+    .spikad-badges{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:flex-end;}
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 12px;border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-size:13px;
+      backdrop-filter: blur(10px);
+    }
+    .dot{width:9px;height:9px;border-radius:999px;display:inline-block;}
+    .dot.green{background:var(--good);}
+    .dot.blue{background:var(--blue);}
+    .dot.pink{background:var(--pink);}
+    .dot.cyan{background:var(--cyan);}
+
+    .grid{display:grid;gap:14px;}
+    @media (min-width: 900px){ .grid.cols-2{grid-template-columns:1.15fr .85fr;} }
+    @media (min-width: 900px){ .grid.cols-3{grid-template-columns:1fr 1fr 1fr;} }
+    @media (min-width: 900px){ .grid.cols-4{grid-template-columns:1fr 1fr 1fr 1fr;} }
+
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:var(--radius);
+      padding:16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    }
+    .panel h3{margin:0 0 8px;font-size:16px;letter-spacing:-.01em;}
+    .panel p{margin:0;color:var(--muted);line-height:1.55;font-size:14px;}
+    .kicker{color:var(--muted2);font-size:12px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:8px;}
+    .hr{height:1px;background:rgba(255,255,255,.10);margin:14px 0;}
+
+    /* Layer cards */
+    .layer{
+      position:relative;
+      padding:18px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,.12);
+      overflow:hidden;
+    }
+    .layer:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(800px 240px at 30% 0%, rgba(96,165,250,.28), transparent 55%),
+                  radial-gradient(700px 240px at 90% 20%, rgba(244,114,182,.22), transparent 55%);
+      opacity:.85;
+      pointer-events:none;
+      z-index:0;
+    }
+    .layer > *{position:relative; z-index:1;}
+    .layer-head{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
+    .chip{
+      display:inline-flex;align-items:center;gap:10px;
+      border-radius:999px;padding:9px 12px;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.85);
+      font-size:13px;
+    }
+    .chip b{font-weight:700;color:#fff;}
+    .layer h3{margin:0;font-size:18px;letter-spacing:-.01em;}
+    .layer small{color:var(--muted2);}
+    .list{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:8px;}
+    .li{
+      display:flex;gap:10px;align-items:flex-start;
+      padding:10px 12px;border-radius:14px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+    }
+    .li .mark{
+      width:26px;height:26px;border-radius:10px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      color:#fff;
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+
+    /* Flow */
+    .flow{display:grid;gap:12px;}
+    .flow-row{
+      display:flex;gap:12px;align-items:stretch;flex-wrap:wrap;
+    }
+    .flow-step{
+      flex:1 1 220px;
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.06);
+    }
+    .flow-step h4{margin:0 0 6px;font-size:14px;color:rgba(255,255,255,.92);}
+    .flow-step p{margin:0;font-size:13px;color:var(--muted);line-height:1.5;}
+    .arrow{
+      flex:0 0 auto;
+      display:none;
+      align-items:center;
+      color:rgba(255,255,255,.55);
+      padding:0 6px;
+    }
+    @media (min-width: 900px){ .arrow{display:flex;} }
+
+    /* Schedule */
+    .schedule{
+      display:grid; gap:10px;
+    }
+    .day{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+      padding:12px 12px;border-radius:16px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      flex-wrap:wrap;
+    }
+    .day b{color:#fff;}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:7px 10px;border-radius:999px;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.12);
+      color:rgba(255,255,255,.80);
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .pill .dot{width:8px;height:8px;border-radius:999px;}
+    .timebox{
+      display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+      color:var(--muted);
+      font-size:12px;
+    }
+    .time{
+      padding:6px 10px;border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    /* Metrics */
+    .metric{
+      padding:14px;border-radius:18px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .metric .label{color:var(--muted2);font-size:12px;text-transform:uppercase;letter-spacing:.12em;}
+    .metric .value{margin-top:8px;font-size:18px;font-weight:750;letter-spacing:-.02em;}
+    .metric .note{margin-top:6px;font-size:13px;color:var(--muted);line-height:1.45;}
+
+    /* Footer note */
+    .noteBox{
+      margin-top:14px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px dashed rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+      color:var(--muted);
+      line-height:1.55;
+      font-size:13px;
+    }
+    .noteBox b{color:#fff;}
+  </style>
+
+  <div class="spikad-wrap">
+    <!-- Header -->
+    <div class="spikad-top">
+      <div class="spikad-title">
+        <h2>Spikad 2-Layer Content System <span style="opacity:.7;">(Volume-Based)</span></h2>
+        <p>
+          Two engines working together: <b>educational content drives massive reach & trust</b>,
+          then <b>CTA content harvests warm attention into bookings</b>. The key is rhythm, not randomness.
+        </p>
+      </div>
+
+      <div class="spikad-badges">
+        <span class="badge"><span class="dot blue"></span><b style="color:#fff">Layer 1</b> Traffic + Trust</span>
+        <span class="badge"><span class="dot pink"></span><b style="color:#fff">Layer 2</b> Conversion + Bookings</span>
+        <span class="badge"><span class="dot green"></span><b style="color:#fff">Goal</b> Predictable Leads</span>
+      </div>
+    </div>
+
+    <!-- Layers + Right column -->
+    <div class="grid cols-2">
+      <!-- Left: Layers -->
+      <div class="panel">
+        <div class="kicker">The two engines</div>
+
+        <!-- Layer 1 -->
+        <div class="layer" style="margin-bottom:12px;">
+          <div class="layer-head">
+            <div>
+              <h3>Layer 1 — Authority Engine (Educational)</h3>
+              <small>Purpose: reach, saves, shares, trust, audience growth.</small>
+            </div>
+            <span class="chip"><span class="dot blue"></span><b>Traction</b> magnet</span>
+          </div>
+
+          <ul class="list">
+            <li class="li">
+              <span class="mark">📌</span>
+              <div><b style="color:#fff;">Topics:</b> Moms/VAT clarity, F-skatt/FA-skatt, bank setup, common mistakes, startup costs, free tools.</div>
+            </li>
+            <li class="li">
+              <span class="mark">📈</span>
+              <div><b style="color:#fff;">Outcome:</b> high engagement → algorithm push → constant new warm audience entering your page.</div>
+            </li>
+            <li class="li">
+              <span class="mark">🧠</span>
+              <div><b style="color:#fff;">Positioning:</b> “This guy actually understands Sweden and explains it in our language.”</div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Layer 2 -->
+        <div class="layer">
+          <div class="layer-head">
+            <div>
+              <h3>Layer 2 — Conversion Engine (Direct CTA)</h3>
+              <small>Purpose: DMs, bookings, consultations, package sales.</small>
+            </div>
+            <span class="chip"><span class="dot pink"></span><b>Harvest</b> attention</span>
+          </div>
+
+          <ul class="list">
+            <li class="li">
+              <span class="mark">🎯</span>
+              <div><b style="color:#fff;">Format:</b> clear offer + one action (“DM”, “Book”, “Reply with كلمة…”, “Free consult”).</div>
+            </li>
+            <li class="li">
+              <span class="mark">⏱️</span>
+              <div><b style="color:#fff;">Doesn’t need huge reach:</b> it needs the right audience at the right moment.</div>
+            </li>
+            <li class="li">
+              <span class="mark">✅</span>
+              <div><b style="color:#fff;">Best when:</b> posted after education waves (warm audience already trusts you).</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="noteBox">
+          <b>Core rule:</b> Layer 1 builds pressure + trust. Layer 2 converts it.
+          If Layer 2 is posted without Layer 1 momentum, it still works—but at a lower efficiency.
+        </div>
+      </div>
+
+      <!-- Right: Flow + Cadence -->
+      <div class="grid" style="gap:14px;">
+        <!-- Flow -->
+        <div class="panel">
+          <div class="kicker">How it works</div>
+          <div class="flow">
+            <div class="flow-row">
+              <div class="flow-step">
+                <h4>1) Educational reel</h4>
+                <p>Attract cold audience with clarity (tax, moms, banks, mistakes). Maximize saves & shares.</p>
+              </div>
+              <div class="arrow">➜</div>
+              <div class="flow-step">
+                <h4>2) Warm attention builds</h4>
+                <p>People binge more videos, follow, and start trusting your system.</p>
+              </div>
+              <div class="arrow">➜</div>
+              <div class="flow-step">
+                <h4>3) CTA reel</h4>
+                <p>Simple offer + one action. Convert the warmed audience into DMs & bookings.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cadence -->
+        <div class="panel">
+          <div class="kicker">Weekly cadence (volume-based)</div>
+          <p style="margin-bottom:12px;">
+            Scale <b>Layer 1</b> aggressively, then “harvest” with <b>Layer 2</b> at predictable intervals.
+          </p>
+
+          <div class="schedule" role="list">
+            <div class="day" role="listitem">
+              <div><b>Mon</b> <span style="color:var(--muted);">— Education</span></div>
+              <div class="pill"><span class="dot blue"></span>Layer 1</div>
+            </div>
+            <div class="day" role="listitem">
+              <div><b>Tue</b> <span style="color:var(--muted);">— Education</span></div>
+              <div class="pill"><span class="dot blue"></span>Layer 1</div>
+            </div>
+            <div class="day" role="listitem">
+              <div><b>Wed</b> <span style="color:var(--muted);">— Education</span></div>
+              <div class="pill"><span class="dot blue"></span>Layer 1</div>
+            </div>
+            <div class="day" role="listitem">
+              <div><b>Thu</b> <span style="color:var(--muted);">— CTA / Booking push</span></div>
+              <div class="pill"><span class="dot pink"></span>Layer 2</div>
+            </div>
+            <div class="day" role="listitem">
+              <div><b>Fri</b> <span style="color:var(--muted);">— Education</span></div>
+              <div class="pill"><span class="dot blue"></span>Layer 1</div>
+            </div>
+            <div class="day" role="listitem">
+              <div><b>Sat</b> <span style="color:var(--muted);">— Education</span></div>
+              <div class="pill"><span class="dot blue"></span>Layer 1</div>
+            </div>
+            <div class="day" role="listitem">
+              <div><b>Sun</b> <span style="color:var(--muted);">— CTA / Offer reminder</span></div>
+              <div class="pill"><span class="dot pink"></span>Layer 2</div>
+            </div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="timebox" aria-label="Suggested posting windows">
+            <span class="time">Lunch: 12:00–13:00 → Education (Layer 1)</span>
+            <span class="time">Evening: 19:00–21:00 → CTA (Layer 2)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrics row -->
+    <div class="panel" style="margin-top:14px;">
+      <div class="kicker">Measure correctly</div>
+      <div class="grid cols-4">
+        <div class="metric">
+          <div class="label">Layer 1 KPI</div>
+          <div class="value">Saves + Shares</div>
+          <div class="note">Signals “value” → increases distribution → fuels your reach engine.</div>
+        </div>
+        <div class="metric">
+          <div class="label">Layer 1 KPI</div>
+          <div class="value">New Followers</div>
+          <div class="note">Measures how many cold viewers convert into warm audience.</div>
+        </div>
+        <div class="metric">
+          <div class="label">Layer 2 KPI</div>
+          <div class="value">DMs / 1,000 views</div>
+          <div class="note">Best early indicator of offer-message fit and CTA clarity.</div>
+        </div>
+        <div class="metric">
+          <div class="label">Layer 2 KPI</div>
+          <div class="value">Bookings</div>
+          <div class="note">Final metric. Optimize by testing CTA script + offer framing.</div>
+        </div>
+      </div>
+
+      <div class="noteBox">
+        <b>Scaling rule for volume:</b> keep Layer 1 always-on (daily if possible),
+        keep Layer 2 frequent but sharp (2–3×/week), and never let CTA videos become “noisy”.
+        The audience should feel: <b>“I learned something → now I’m ready to act.”</b>
+      </div>
+    </div>
+  </div>
+</section>
